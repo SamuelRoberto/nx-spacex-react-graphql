@@ -1,0 +1,24 @@
+{
+  "npmScope": "nx-spacex-react-graphql",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "space-x": {
+      "tags": []
+    },
+    "space-x-e2e": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    }
+  }
+}
