@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import { RouterPathEnum } from './shared/enums/RouterPathEnum';
 import { ApolloProvider } from '@apollo/react-hooks';

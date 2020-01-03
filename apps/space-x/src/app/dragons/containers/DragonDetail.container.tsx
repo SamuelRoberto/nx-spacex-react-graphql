@@ -10,7 +10,9 @@ const DRAGON = gql(`
     dragon(id: $id) {
       id,
       name,
-      type
+      type,
+      description,
+      wikipedia
     }
   }
 `);

@@ -10,7 +10,8 @@ const ROCKETS = gql`
       id,
       rocket_name,
       company,
-      success_rate_pct
+      success_rate_pct,
+      rocket_id
     }
   }
 `;

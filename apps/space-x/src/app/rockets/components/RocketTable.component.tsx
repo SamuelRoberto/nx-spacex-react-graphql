@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import { useHistory } from "react-router-dom";
 import { RouterPathEnum } from '../../shared/enums/RouterPathEnum';
 import { Rocket } from '@nx-spacex-react-graphql/api-interfaces'
+import { Table } from 'reactstrap';
 
 export const RocketTableComponent = (props: { rockets: Rocket[] }) => {
   const { rockets }: { rockets: Rocket[] } = props;
   const history = useHistory();
   return (
     <>
-      <table className="table table-hover">
+      <Table hover={true}>
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -18,8 +19,8 @@ export const RocketTableComponent = (props: { rockets: Rocket[] }) => {
           </tr>
         </thead>
         <tbody>
-          {rockets ? rockets.map(({ id, rocket_name, company, success_rate_pct }) => (
-            <tr key={id} onClick={() => history.push(RouterPathEnum.ROCKET.replace(':id', id.toString()))}>
+          {rockets ? rockets.map(({ id, rocket_name, company, success_rate_pct, rocket_id }) => (
+            <tr key={id} onClick={() => history.push(RouterPathEnum.ROCKET.replace(':id', rocket_id.toString()))}>
               <td>{id}</td>
               <td>{rocket_name}</td>
               <td>{company}</td>
@@ -27,7 +28,7 @@ export const RocketTableComponent = (props: { rockets: Rocket[] }) => {
             </tr>
           )) : null}
         </tbody>
-      </table>
+      </Table>
     </>
   );
 }

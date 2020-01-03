@@ -7,10 +7,12 @@ import RocketBoxComponent from '../components/RocketBox.component';
 
 const ROCKET = gql(`
   query Rocket($id: String!) {
-    rocket(id: $id) {
+    rocket(rocket_id: $id) {
       id,
-      name,
-      type
+      rocket_name,
+      rocket_type,
+      description,
+      wikipedia
     }
   }
 `);

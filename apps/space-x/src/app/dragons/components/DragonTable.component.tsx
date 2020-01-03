@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { RouterPathEnum } from '../../shared/enums/RouterPathEnum';
 import { Dragon } from '@nx-spacex-react-graphql/api-interfaces'
+import { Table } from 'reactstrap';
 
 export const DragonTableComponent = (props: { dragons: Dragon[] }) => {
   const { dragons }: { dragons: Dragon[] } = props;
   const history = useHistory();
   return (
     <>
-      <table className="table table-hover">
+      <Table hover={true}>
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -27,7 +28,7 @@ export const DragonTableComponent = (props: { dragons: Dragon[] }) => {
             </tr>
           )) : null}
         </tbody>
-      </table>
+      </Table>
     </>
   );
 }
