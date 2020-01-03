@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const typeDefs = gql`
   type Dragon {
+    id: String!
     name: String
     type: String
     active: Boolean
