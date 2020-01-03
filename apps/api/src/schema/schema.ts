@@ -104,6 +104,7 @@ export const typeDefs = gql`
 
   type Query {
     dragons: [Dragon]
+    dragon(id: String!): Dragon
   }
 `;
 
@@ -113,6 +114,10 @@ export const resolvers = {
       return axios.get('https://api.spacexdata.com/v3/dragons')
         .then(res => res.data);
     },
+    dragon: (parentValue, args) => {
+      return axios.get('https://api.spacexdata.com/v3/dragons/' + args.id)
+        .then(res => res.data);
+    }
   },
 };
 
