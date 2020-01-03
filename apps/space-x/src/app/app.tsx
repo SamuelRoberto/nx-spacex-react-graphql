@@ -1,25 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { Message } from '@nx-spacex-react-graphql/api-interfaces';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import { RouterPathEnum } from './shared/enums/RouterPathEnum';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+import { environment } from '../environments/environment'
+
+/**
+ * Containers
+ */
+import HomeContainer from './home/containers/Home.container'
+import DragonsListContainer from './dragons/containers/DragonsList.container';
+import RocketsListContainer from './rockets/containers/RocketsList.container';
+import DragonDetailContainer from './dragons/containers/DragonDetail.container';
+import RocketDetailContainer from './rockets/containers/RocketDetail.container';
+
+/**
+ * Components
+ */
+import HeaderComponent from './shared/components/Header.component';
+import LoaderComponent from './shared/components/Loader.component';
+
+const client = new ApolloClient({
+  uri: environment.gqlBasePath
+});
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
-
-  useEffect(() => {
-    fetch('/api')
-      .then(r => r.json())
-      .then(setMessage);
-  }, []);
 
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to space-x!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
-        />
-      </div>
-      <div>{m.message}</div>
+      <ApolloProvider client={client}>
+        <Router>
+          {/* <LoaderComponent /> */}
+          <HeaderComponent />
+          <Switch>
+            <Route path={RouterPathEnum.HOME} exact component={HomeContainer} />
+            <Route path={RouterPathEnum.ROCKETS} component={RocketsListContainer} />
+            <Route path={RouterPathEnum.ROCKET} component={RocketDetailContainer} />
+            <Route path={RouterPathEnum.DRAGONS} component={DragonsListContainer} />
+            <Route path={RouterPathEnum.DRAGON} component={DragonDetailContainer} />
+            <Redirect to={RouterPathEnum.HOME} />
+          </Switch>
+        </Router>
+      </ApolloProvider>
     </>
   );
 };

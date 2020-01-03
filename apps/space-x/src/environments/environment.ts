@@ -2,5 +2,6 @@
 // When building for production, this file is replaced with `environment.prod.ts`.
 
 export const environment = {
-  production: false
+  production: false,
+  gqlBasePath: 'http://localhost:4200/api/graphql'
 };
