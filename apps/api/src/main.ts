@@ -1,12 +1,11 @@
 import { ApolloServer } from 'apollo-server-express';
-import { typeDefs, resolvers } from './schema/schema';
+import Schema from './app/schema/schema';
 import * as express from 'express';
 
 const app = express();
 const port = process.env.port || 3333;
 const serverApollo = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema: Schema,
   introspection: true,
   playground: true,
 });
